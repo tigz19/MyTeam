@@ -12,9 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.kocha.myteam.databinding.TeamListActivityBinding;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
 
 public class TeamListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
@@ -22,6 +25,7 @@ public class TeamListActivity extends AppCompatActivity {
     private com.kocha.myteam.databinding.TeamListActivityBinding allView;
     SharedPreferences sharedPreferences;
     Gson gson = new Gson();
+    Type collectionType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,18 +35,15 @@ public class TeamListActivity extends AppCompatActivity {
         allView.recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         allView.recyclerView.setLayoutManager(layoutManager);
+        collectionType = new TypeToken<ArrayList<String>>(){}.getType();
 
-        ArrayList<String> myDataset = new ArrayList<>();
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
+        ArrayList<String> myDataset = new ArrayList<>();
+        try {
+            myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
+        } catch (Exception e) {
 
-        // String[] list = (sharedPreferences.getString("list", "Не могу получить данные").split(";"));
-        ArrayList<String> list = new ArrayList<>();
-        
-
-        for (String name : list) {
-            myDataset.add(name);
         }
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("countEmpl", String.valueOf(myDataset.size()));
         editor.putString("incomeEmpl", "2000");
@@ -56,7 +57,7 @@ public class TeamListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        ArrayList<String> finalMyDataset = myDataset;
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
 
             @Override
@@ -70,7 +71,7 @@ public class TeamListActivity extends AppCompatActivity {
                 Toast.makeText(TeamListActivity.this, "on Swiped ", Toast.LENGTH_SHORT).show();
                 //Remove swiped item from list and notify the RecyclerView
                 int position = viewHolder.getAdapterPosition();
-                myDataset.remove(position);
+                finalMyDataset.remove(position);
                 mAdapter.notifyDataSetChanged();
 
             }
