@@ -20,11 +20,13 @@
         <activity
             android:name=".TeamListActivity"
             android:label="Экран списка сотрудников"
-            android:noHistory="true" />
+            android:noHistory="true"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".AddTeamMemberActivity"
-            android:label="Экран добавления нового сотрудника"
-            android:noHistory="true" />
+            android:label="Экран добавления сотрудника"
+            android:noHistory="true"
+            android:parentActivityName=".TeamListActivity" />
     </application>
 
 </manifest>
