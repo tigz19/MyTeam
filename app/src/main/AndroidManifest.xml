@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity
+            android:label="Экран списка сотрудников"
             android:name=".TeamListActivity"
             android:noHistory="true" />
         <activity

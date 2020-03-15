@@ -42,7 +42,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
                                                                              int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_team_list_recycler_view_holder, parent, false);
+                .inflate(R.layout.activity_team_list_recycler_view_item, parent, false);
 
         TeamListViewHolder vh = new TeamListViewHolder(v);
         return vh;
