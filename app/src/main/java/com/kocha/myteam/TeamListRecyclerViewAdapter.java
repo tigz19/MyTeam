@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+
 public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRecyclerViewAdapter.TeamListViewHolder> {
-    private String[] mDataset;
+    private ArrayList<String> mDataset;
     private Activity activity;
 
     public class TeamListViewHolder extends RecyclerView.ViewHolder {
@@ -32,7 +34,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
         }
     }
 
-    public TeamListRecyclerViewAdapter(String[] myDataset, Activity activity) {
+    public TeamListRecyclerViewAdapter(ArrayList<String> myDataset, Activity activity) {
         mDataset = myDataset;
         this.activity = activity;
     }
@@ -50,11 +52,11 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
 
     @Override
     public void onBindViewHolder(TeamListViewHolder holder, int position) {
-        holder.textView.setText(mDataset[position]);
+        holder.textView.setText(mDataset.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return mDataset.length;
+        return mDataset.size();
     }
 }
