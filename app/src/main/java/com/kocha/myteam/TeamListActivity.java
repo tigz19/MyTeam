@@ -17,7 +17,6 @@ import com.kocha.myteam.databinding.TeamListActivityBinding;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class TeamListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
@@ -35,14 +34,14 @@ public class TeamListActivity extends AppCompatActivity {
         allView.recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         allView.recyclerView.setLayoutManager(layoutManager);
-        collectionType = new TypeToken<ArrayList<String>>(){}.getType();
+        collectionType = new TypeToken<ArrayList<String>>() {
+        }.getType();
 
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
         ArrayList<String> myDataset = new ArrayList<>();
         try {
             myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
         } catch (Exception e) {
-
         }
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("countEmpl", String.valueOf(myDataset.size()));
