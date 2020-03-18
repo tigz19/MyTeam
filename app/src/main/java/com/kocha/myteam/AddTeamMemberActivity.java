@@ -37,12 +37,16 @@ public class AddTeamMemberActivity extends AppCompatActivity {
         collectionType = new TypeToken<ArrayList<String>>() {
         }.getType();
 
-        // TODO: 18.03.2020 Надо обрабатывать все поля, а не только последнее. 
+        
+        // чекаем состояние полей
         allViews.editEmplIncome.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable s) {}
+            public void afterTextChanged(Editable s) {
+            }
+
             public void beforeTextChanged(CharSequence s, int start,
                                           int count, int after) {
             }
+
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 name = String.valueOf(allViews.editName.getText());
@@ -52,8 +56,95 @@ public class AddTeamMemberActivity extends AppCompatActivity {
                 emplIncome = String.valueOf(allViews.editEmplIncome.getText());
                 if (!name.equals("") && !surname.equals("") && !patronymic.equals("") && !wage.equals("") && !emplIncome.equals("")) {
                     allViews.addMemberButton.setVisibility(View.VISIBLE);
+                } else {
+                    allViews.addMemberButton.setVisibility(View.INVISIBLE);
                 }
-                else {
+            }
+        });
+        allViews.editWage.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                name = String.valueOf(allViews.editName.getText());
+                surname = String.valueOf(allViews.editSurname.getText());
+                patronymic = String.valueOf(allViews.editPatronymic.getText());
+                wage = String.valueOf(allViews.editWage.getText());
+                emplIncome = String.valueOf(allViews.editEmplIncome.getText());
+                if (!name.equals("") && !surname.equals("") && !patronymic.equals("") && !wage.equals("") && !emplIncome.equals("")) {
+                    allViews.addMemberButton.setVisibility(View.VISIBLE);
+                } else {
+                    allViews.addMemberButton.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        allViews.editName.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                name = String.valueOf(allViews.editName.getText());
+                surname = String.valueOf(allViews.editSurname.getText());
+                patronymic = String.valueOf(allViews.editPatronymic.getText());
+                wage = String.valueOf(allViews.editWage.getText());
+                emplIncome = String.valueOf(allViews.editEmplIncome.getText());
+                if (!name.equals("") && !surname.equals("") && !patronymic.equals("") && !wage.equals("") && !emplIncome.equals("")) {
+                    allViews.addMemberButton.setVisibility(View.VISIBLE);
+                } else {
+                    allViews.addMemberButton.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        allViews.editSurname.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                name = String.valueOf(allViews.editName.getText());
+                surname = String.valueOf(allViews.editSurname.getText());
+                patronymic = String.valueOf(allViews.editPatronymic.getText());
+                wage = String.valueOf(allViews.editWage.getText());
+                emplIncome = String.valueOf(allViews.editEmplIncome.getText());
+                if (!name.equals("") && !surname.equals("") && !patronymic.equals("") && !wage.equals("") && !emplIncome.equals("")) {
+                    allViews.addMemberButton.setVisibility(View.VISIBLE);
+                } else {
+                    allViews.addMemberButton.setVisibility(View.INVISIBLE);
+                }
+            }
+        });
+        allViews.editPatronymic.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable s) {
+            }
+
+            public void beforeTextChanged(CharSequence s, int start,
+                                          int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start,
+                                      int before, int count) {
+                name = String.valueOf(allViews.editName.getText());
+                surname = String.valueOf(allViews.editSurname.getText());
+                patronymic = String.valueOf(allViews.editPatronymic.getText());
+                wage = String.valueOf(allViews.editWage.getText());
+                emplIncome = String.valueOf(allViews.editEmplIncome.getText());
+                if (!name.equals("") && !surname.equals("") && !patronymic.equals("") && !wage.equals("") && !emplIncome.equals("")) {
+                    allViews.addMemberButton.setVisibility(View.VISIBLE);
+                } else {
                     allViews.addMemberButton.setVisibility(View.INVISIBLE);
                 }
             }
