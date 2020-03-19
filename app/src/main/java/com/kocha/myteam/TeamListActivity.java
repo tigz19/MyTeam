@@ -25,6 +25,7 @@ public class TeamListActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Gson gson = new Gson();
     Type collectionType;
+    ArrayList<String> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +39,8 @@ public class TeamListActivity extends AppCompatActivity {
         }.getType();
 
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
-        ArrayList<String> myDataset = new ArrayList<>();
-        try {
-            myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
-        } catch (Exception e) {
-        }
+
+        myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("countEmpl", String.valueOf(myDataset.size()));
         editor.putString("incomeEmpl", "2000");

@@ -27,6 +27,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     String patronymic;
     String wage;
     String emplIncome;
+    ArrayList<String> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
         collectionType = new TypeToken<ArrayList<String>>() {
         }.getType();
 
-        
+
         // чекаем состояние полей
         allViews.editEmplIncome.addTextChangedListener(new TextWatcher() {
             public void afterTextChanged(Editable s) {
@@ -150,30 +151,16 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             }
         });
 
+        gson = new Gson();
+        sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
+        list = new ArrayList<>();
+        list = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
 
-        // TODO: 15.03.2020 скрыть кнопку пока не заполнены все поля 
         allViews.addMemberButton.setOnClickListener(v -> {
-            gson = new Gson();
-
-            sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            ArrayList<String> list = new ArrayList<>();
-
-
-            try {
-                // TODO: 15.03.2020   это убрать в oncreate. А в Teamlist сразу сохранять пустой список
-                list = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
-                list.add(name);
-            } catch (Exception e) {
-                list.add(name);
-                editor.putString("list", gson.toJson(list));
-                editor.apply();
-                Intent intent = new Intent(AddTeamMemberActivity.this, TeamListActivity.class);
-                startActivity(intent);
-            }
+            list.add(name);
             editor.putString("list", gson.toJson(list));
             editor.apply();
-
             Intent intent = new Intent(AddTeamMemberActivity.this, TeamListActivity.class);
             startActivity(intent);
         });
