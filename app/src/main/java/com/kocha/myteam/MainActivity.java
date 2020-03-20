@@ -13,6 +13,7 @@ import com.kocha.myteam.databinding.ActivityMainBinding;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Gson gson;
     Type collectionType;
-    ArrayList<String> myDataset;
+    ArrayList<TeamItemModel> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
 
-        collectionType = new TypeToken<ArrayList<String>>() {
+        collectionType = new TypeToken<List<TeamItemModel>>() {
         }.getType();
         gson = new Gson();
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);

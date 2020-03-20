@@ -9,18 +9,22 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRecyclerViewAdapter.TeamListViewHolder> {
-    private ArrayList<String> mDataset;
+    private List<TeamItemModel> mDataset;
     private Activity activity;
 
     public class TeamListViewHolder extends RecyclerView.ViewHolder {
-        public TextView textView;
+        public TextView textName;
+        public TextView textIncome;
+        public TextView textWage;
 
         public TeamListViewHolder(View v) {
             super(v);
-            textView = (TextView) itemView.findViewById(R.id.activity_team_recycler_view_holder_text_view);
+            textName = (TextView) itemView.findViewById(R.id.activity_team_recycler_view_holder_text_view);
+            textIncome = (TextView) itemView.findViewById(R.id.textIncome);
+            textWage = (TextView) itemView.findViewById(R.id.textWage);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -34,7 +38,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
         }
     }
 
-    public TeamListRecyclerViewAdapter(ArrayList<String> myDataset, Activity activity) {
+    public TeamListRecyclerViewAdapter(List<TeamItemModel> myDataset, Activity activity) {
         mDataset = myDataset;
         this.activity = activity;
     }
@@ -52,7 +56,9 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
 
     @Override
     public void onBindViewHolder(TeamListViewHolder holder, int position) {
-        holder.textView.setText(mDataset.get(position));
+        holder.textName.setText(mDataset.get(position).getName() + " " + mDataset.get(position).getSurname() + " " + mDataset.get(position).getPatronymic());
+        holder.textWage.setText("Зарплата: " + mDataset.get(position).getWage() + " руб.");
+        holder.textIncome.setText("Приносит доход: " + mDataset.get(position).getEmplIncome()+ " руб.");
     }
 
     @Override

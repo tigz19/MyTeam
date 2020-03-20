@@ -33,7 +33,7 @@
         tools:text="#" />
 
     <TextView
-        android:id="@+id/salary"
+        android:id="@+id/textWage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,17 +41,17 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/editWage"
+        app:layout_constraintEnd_toStartOf="@+id/textIncome"
         app:layout_constraintStart_toStartOf="@+id/number"
         app:layout_constraintTop_toBottomOf="@+id/number"
         tools:text="Зарплата: 30 000 руб." />
 
     <TextView
-        android:id="@+id/editWage"
+        android:id="@+id/textIncome"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/activity_team_recycler_view_holder_text_view"
-        app:layout_constraintTop_toTopOf="@+id/salary"
+        app:layout_constraintTop_toTopOf="@+id/textWage"
         tools:text="Приносит доход: 150 000 руб." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -16,6 +16,7 @@ import com.kocha.myteam.databinding.AddTeamMemberActivityBinding;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AddTeamMemberActivity extends AppCompatActivity {
     private AddTeamMemberActivityBinding allViews;
@@ -27,7 +28,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
     String patronymic;
     String wage;
     String emplIncome;
-    ArrayList<String> list;
+    List<TeamItemModel> list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
         allViews = AddTeamMemberActivityBinding.inflate(getLayoutInflater());
         setContentView(allViews.getRoot());
         allViews.addMemberButton.setVisibility(View.INVISIBLE);
-        collectionType = new TypeToken<ArrayList<String>>() {
+        collectionType = new TypeToken<List<TeamItemModel>>() {
         }.getType();
 
 
@@ -158,7 +159,14 @@ public class AddTeamMemberActivity extends AppCompatActivity {
 
         allViews.addMemberButton.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            list.add(name);
+            TeamItemModel model = new TeamItemModel();
+            model.setName(name);
+            model.setSurname(surname);
+            model.setPatronymic(patronymic);
+            model.setEmplIncome(emplIncome);
+            model.setWage(wage);
+
+            list.add(model);
             editor.putString("list", gson.toJson(list));
             editor.apply();
             Intent intent = new Intent(AddTeamMemberActivity.this, TeamListActivity.class);

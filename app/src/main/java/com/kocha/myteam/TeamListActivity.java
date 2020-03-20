@@ -17,6 +17,7 @@ import com.kocha.myteam.databinding.TeamListActivityBinding;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 public class TeamListActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
@@ -25,7 +26,7 @@ public class TeamListActivity extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     Gson gson = new Gson();
     Type collectionType;
-    ArrayList<String> myDataset;
+    List<TeamItemModel> myDataset;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,7 @@ public class TeamListActivity extends AppCompatActivity {
         allView.recyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         allView.recyclerView.setLayoutManager(layoutManager);
-        collectionType = new TypeToken<ArrayList<String>>() {
+        collectionType = new TypeToken<List<TeamItemModel>>() {
         }.getType();
 
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
@@ -54,7 +55,7 @@ public class TeamListActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
-        ArrayList<String> finalMyDataset = myDataset;
+        List<TeamItemModel> finalMyDataset = myDataset;
         ItemTouchHelper.SimpleCallback simpleItemTouchCallback = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.DOWN | ItemTouchHelper.UP) {
 
             @Override
@@ -70,6 +71,9 @@ public class TeamListActivity extends AppCompatActivity {
                 int position = viewHolder.getAdapterPosition();
                 finalMyDataset.remove(position);
                 mAdapter.notifyDataSetChanged();
+
+                editor.putString("list", gson.toJson(finalMyDataset));
+                editor.apply();
 
             }
         };
