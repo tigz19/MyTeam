@@ -156,6 +156,7 @@ public class AddTeamMemberActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("mysetting", Context.MODE_PRIVATE);
         list = new ArrayList<>();
         list = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
+        Integer incomeEmpls = sharedPreferences.getInt("incomeEmpls", 0);
 
         allViews.addMemberButton.setOnClickListener(v -> {
             SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -163,16 +164,17 @@ public class AddTeamMemberActivity extends AppCompatActivity {
             model.setName(name);
             model.setSurname(surname);
             model.setPatronymic(patronymic);
-            model.setEmplIncome(emplIncome);
+            model.setEmplIncome(Integer.valueOf(emplIncome));
             model.setWage(wage);
 
             list.add(model);
             editor.putString("list", gson.toJson(list));
+            editor.putString("countEmpl", String.valueOf(list.size()));
+            editor.putInt("incomeEmpls", incomeEmpls + Integer.valueOf(emplIncome));
             editor.apply();
             Intent intent = new Intent(AddTeamMemberActivity.this, TeamListActivity.class);
             startActivity(intent);
         });
 
     }
-
 }

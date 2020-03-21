@@ -58,7 +58,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
     public void onBindViewHolder(TeamListViewHolder holder, int position) {
         holder.textName.setText(mDataset.get(position).getName() + " " + mDataset.get(position).getSurname() + " " + mDataset.get(position).getPatronymic());
         holder.textWage.setText("Зарплата: " + mDataset.get(position).getWage() + " руб.");
-        holder.textIncome.setText("Приносит доход: " + mDataset.get(position).getEmplIncome()+ " руб.");
+        holder.textIncome.setText("Приносит доход: " + mDataset.get(position).getEmplIncome() + " руб.");
     }
 
     @Override

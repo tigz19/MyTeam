@@ -5,7 +5,7 @@ public class TeamItemModel {
     private String surname;
     private String patronymic;
     private String wage;
-    private String emplIncome;
+    private Integer emplIncome;
 
     public String getName() {
         return name;
@@ -39,11 +39,11 @@ public class TeamItemModel {
         this.wage = wage;
     }
 
-    public String getEmplIncome() {
+    public Integer getEmplIncome() {
         return emplIncome;
     }
 
-    public void setEmplIncome(String emplIncome) {
+    public void setEmplIncome(Integer emplIncome) {
         this.emplIncome = emplIncome;
     }
 }

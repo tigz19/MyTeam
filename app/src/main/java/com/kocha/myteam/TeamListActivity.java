@@ -16,7 +16,6 @@ import com.google.gson.reflect.TypeToken;
 import com.kocha.myteam.databinding.TeamListActivityBinding;
 
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 public class TeamListActivity extends AppCompatActivity {
@@ -43,9 +42,6 @@ public class TeamListActivity extends AppCompatActivity {
 
         myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("countEmpl", String.valueOf(myDataset.size()));
-        editor.putString("incomeEmpl", "2000");
-        editor.apply();
 
         mAdapter = new TeamListRecyclerViewAdapter(myDataset, this);
         allView.recyclerView.setAdapter(mAdapter);
@@ -69,10 +65,15 @@ public class TeamListActivity extends AppCompatActivity {
                 Toast.makeText(TeamListActivity.this, "on Swiped ", Toast.LENGTH_SHORT).show();
                 //Remove swiped item from list and notify the RecyclerView
                 int position = viewHolder.getAdapterPosition();
+
+                Integer emplsIncome = sharedPreferences.getInt("incomeEmpls", 0);
+                Integer emplRemoveIncome = Integer.valueOf(finalMyDataset.get(position).getEmplIncome());
+
+                editor.putInt("incomeEmpls", emplsIncome - emplRemoveIncome);
                 finalMyDataset.remove(position);
                 mAdapter.notifyDataSetChanged();
-
                 editor.putString("list", gson.toJson(finalMyDataset));
+                editor.putString("countEmpl", String.valueOf(myDataset.size()));
                 editor.apply();
 
             }

@@ -38,15 +38,14 @@ public class MainActivity extends AppCompatActivity {
         myDataset = new ArrayList<>();
         try {
             myDataset = gson.fromJson(sharedPreferences.getString("list", "Не могу получить данные"), collectionType);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putString("list", gson.toJson(myDataset));
             editor.apply();
         }
 
         allViews.emplCount.setText(sharedPreferences.getString("countEmpl", String.valueOf(myDataset.size())));
-        allViews.incomeCount.setText(sharedPreferences.getString("incomeEmpl", "Не могу получить данные"));
+        allViews.incomeCount.setText(String.valueOf(sharedPreferences.getInt("incomeEmpls", 0)));
 
         allViews.getTeamListButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, TeamListActivity.class);
@@ -59,6 +58,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         allViews.emplCount.setText(sharedPreferences.getString("countEmpl", String.valueOf(myDataset.size())));
-        allViews.incomeCount.setText(sharedPreferences.getString("incomeEmpl", "Не могу получить данные"));
+        allViews.incomeCount.setText(String.valueOf(sharedPreferences.getInt("incomeEmpls", 0)));
     }
 }
