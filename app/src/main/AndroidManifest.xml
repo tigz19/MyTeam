@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:label="Главный экран">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,15 +18,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".TeamListActivity"
+            android:name=".activity.TeamListActivity"
             android:label="Экран списка сотрудников"
             android:noHistory="true"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".activity.MainActivity" />
         <activity
-            android:name=".AddTeamMemberActivity"
+            android:name=".activity.AddingEmployeeActivity"
             android:label="Экран добавления сотрудника"
             android:noHistory="true"
-            android:parentActivityName=".TeamListActivity" />
+            android:parentActivityName=".activity.TeamListActivity" />
     </application>
 
 </manifest>

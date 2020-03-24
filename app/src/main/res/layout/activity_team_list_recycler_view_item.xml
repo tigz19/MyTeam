@@ -8,7 +8,7 @@
     android:layout_marginBottom="16dp">
 
     <TextView
-        android:id="@+id/activity_team_recycler_view_holder_text_view"
+        android:id="@+id/name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -33,7 +33,7 @@
         tools:text="#" />
 
     <TextView
-        android:id="@+id/textWage"
+        android:id="@+id/edit_salary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -41,17 +41,17 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textIncome"
+        app:layout_constraintEnd_toStartOf="@+id/income"
         app:layout_constraintStart_toStartOf="@+id/number"
         app:layout_constraintTop_toBottomOf="@+id/number"
         tools:text="Зарплата: 30 000 руб." />
 
     <TextView
-        android:id="@+id/textIncome"
+        android:id="@+id/income"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@+id/activity_team_recycler_view_holder_text_view"
-        app:layout_constraintTop_toTopOf="@+id/textWage"
+        app:layout_constraintEnd_toEndOf="@+id/name"
+        app:layout_constraintTop_toTopOf="@+id/edit_salary"
         tools:text="Приносит доход: 150 000 руб." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
