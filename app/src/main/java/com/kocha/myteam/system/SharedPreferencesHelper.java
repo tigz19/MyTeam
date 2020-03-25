@@ -38,7 +38,7 @@ public class SharedPreferencesHelper {
             employeeModels = gson.fromJson(serializedString, collectionGsonType);
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
-            Toast.makeText(context, "Сотрдуники не найдены! Создана новая база.", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Сотрудники не найдены! Создана новая база.", Toast.LENGTH_LONG).show();
             employeeModels = new ArrayList<>();
             saveItemModels(employeeModels);
         }
