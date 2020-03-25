@@ -41,10 +41,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         // Получение сохраненного списка сотрудников или иннициализация нового
         employeeModels = sharedPreferencesHelper.getTeamItemModels();
-        if (employeeModels == null) {
-            employeeModels = new ArrayList<>();
-            sharedPreferencesHelper.saveItemModels(employeeModels);
-        }
 
         // Заполннеие количества сотрудников и общего дохода
         viewBinding.emplCount.setText(String.valueOf(employeeModels.size()));

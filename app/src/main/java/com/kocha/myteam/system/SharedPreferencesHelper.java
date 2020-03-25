@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import androidx.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
@@ -29,8 +30,15 @@ public class SharedPreferencesHelper {
 
     // Получение списка сотрудников из Shared Prefs
     public ArrayList<EmployeeModel> getTeamItemModels() {
-        String serializedString = sharedPreferences.getString(EMPLOYEE_LIST_NAME, "[]");
-        return gson.fromJson(serializedString, collectionGsonType);
+        String serializedString = sharedPreferences.getString(EMPLOYEE_LIST_NAME, "НЕТ");
+        ArrayList<EmployeeModel> employeeModels;
+        try {
+            employeeModels = gson.fromJson(serializedString, collectionGsonType);
+        } catch (JsonSyntaxException e) {
+            e.printStackTrace();
+            employeeModels = new ArrayList<>();
+        }
+        return employeeModels;
     }
 
     // Сохранение списка сотрудников в Shared Prefs
