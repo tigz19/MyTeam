@@ -77,7 +77,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
                     Integer.parseInt(viewBinding.editSalary.getText().toString()));
             employeeModels.add(employeeModel);
             sharedPreferencesHelper.saveItemModels(employeeModels);
-            onBackPressed();
+            onNavigateUp();
         }
     }
 
