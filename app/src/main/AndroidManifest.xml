@@ -20,7 +20,6 @@
         <activity
             android:name=".activity.TeamListActivity"
             android:label="Экран списка сотрудников"
-            android:noHistory="true"
             android:parentActivityName=".activity.MainActivity" />
         <activity
             android:name=".activity.AddingEmployeeActivity"

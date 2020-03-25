@@ -54,6 +54,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/name"
         app:layout_constraintTop_toTopOf="@+id/edit_salary"
-        tools:text="Приносит доход: 150 000 руб." />
+        tools:text="Доход: 150 000 руб." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
