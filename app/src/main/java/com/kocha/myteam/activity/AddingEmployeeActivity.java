@@ -77,8 +77,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
                     Integer.parseInt(viewBinding.editSalary.getText().toString()));
             employeeModels.add(employeeModel);
             sharedPreferencesHelper.saveItemModels(employeeModels);
-            Intent intent = new Intent(AddingEmployeeActivity.this, TeamListActivity.class);
-            startActivity(intent);
+            onBackPressed();
         }
     }
 
