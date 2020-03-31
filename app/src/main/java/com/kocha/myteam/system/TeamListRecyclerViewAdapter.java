@@ -3,8 +3,6 @@ package com.kocha.myteam.system;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +11,7 @@ import com.kocha.myteam.R;
 
 import java.util.ArrayList;
 
-public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRecyclerViewAdapter.TeamListViewHolder> {
+public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListViewHolder> {
 
     private ArrayList<EmployeeModel> employeeModels;
 
@@ -23,7 +21,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
 
     @NonNull
     @Override
-    public TeamListRecyclerViewAdapter.TeamListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TeamListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.activity_team_list_recycler_view_item, parent, false);
         return new TeamListViewHolder(v);
@@ -40,27 +38,5 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListRe
     @Override
     public int getItemCount() {
         return employeeModels.size();
-    }
-
-    public class TeamListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-
-        public TextView number;
-        public TextView name;
-        public TextView income;
-        public TextView salary;
-
-        public TeamListViewHolder(View v) {
-            super(v);
-            number = itemView.findViewById(R.id.number);
-            name = itemView.findViewById(R.id.name);
-            income = itemView.findViewById(R.id.income);
-            salary = itemView.findViewById(R.id.edit_salary);
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            Toast.makeText(v.getContext(), "Позиция: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
-        }
     }
 }

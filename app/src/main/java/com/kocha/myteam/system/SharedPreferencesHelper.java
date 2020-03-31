@@ -19,9 +19,9 @@ public class SharedPreferencesHelper {
     public static final String MY_SETTING_NAME = "mysetting";
     public static final String EMPLOYEE_LIST_NAME = "list";
     private final Context context;
-    private SharedPreferences sharedPreferences;
-    private Gson gson = new Gson();
-    private Type collectionGsonType = new TypeToken<List<EmployeeModel>>() {
+    private final SharedPreferences sharedPreferences;
+    private final Gson gson = new Gson();
+    private final Type collectionGsonType = new TypeToken<List<EmployeeModel>>() {
     }.getType();
 
     // Для работы хелпера необходим Контекст
@@ -47,8 +47,9 @@ public class SharedPreferencesHelper {
 
     // Сохранение списка сотрудников в Shared Prefs
     public void saveItemModels(ArrayList<EmployeeModel> employeeModels) {
+        String value = gson.toJson(employeeModels);
         sharedPreferences.edit()
-                .putString(EMPLOYEE_LIST_NAME, gson.toJson(employeeModels))
+                .putString(EMPLOYEE_LIST_NAME, value)
                 .apply();
     }
 }
