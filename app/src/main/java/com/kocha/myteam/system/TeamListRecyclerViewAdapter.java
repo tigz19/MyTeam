@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListViewHolder> {
 
-    private ArrayList<EmployeeModel> employeeModels;
+    public ArrayList<EmployeeModel> employeeModels;
 
     public TeamListRecyclerViewAdapter(ArrayList<EmployeeModel> employeeModels) {
         this.employeeModels = employeeModels;

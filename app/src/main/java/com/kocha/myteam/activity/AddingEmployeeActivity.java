@@ -1,6 +1,5 @@
 package com.kocha.myteam.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,14 +16,14 @@ import java.util.ArrayList;
 public class AddingEmployeeActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper sharedPreferencesHelper;
     // Биндинг Вьюх
-    private AddTeamMemberActivityBinding viewBinding;
+    public AddTeamMemberActivityBinding viewBinding;
     // Локальный список сотрудников
-    private ArrayList<EmployeeModel> employeeModels;
+    public ArrayList<EmployeeModel> employeeModels;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Биндинг Вьюх и развертка верстки
         viewBinding = AddTeamMemberActivityBinding.inflate(getLayoutInflater());
@@ -51,7 +50,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
     /**
      * В завивимости от состояния полей делает кнопку видимой или не видимой
      */
-    private void updateAddButtonVisibility() {
+    public void updateAddButtonVisibility() {
         if (viewBinding.editName.getText().length() == 0 &&
                 viewBinding.editSurname.getText().length() == 0 &&
                 viewBinding.editPatronymic.getText().length() == 0 &&
@@ -66,7 +65,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
     /**
      * Класс, в котором описана реакция на нажатие кнопки добавления сотрудника
      */
-    class AddEmployeeClickListener implements View.OnClickListener {
+    public class AddEmployeeClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -84,7 +83,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
     /**
      * Класс с логикой поведения полей при изменении текста
      */
-    class SimpleTextWatcher implements TextWatcher {
+    public class SimpleTextWatcher implements TextWatcher {
 
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -15,14 +15,14 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper sharedPreferencesHelper;
     // Локальный список сотрдуников
-    private ArrayList<EmployeeModel> employeeModels;
+    public ArrayList<EmployeeModel> employeeModels;
     // Биндинг Вьюх
-    private ActivityMainBinding viewBinding;
+    public ActivityMainBinding viewBinding;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Биндинг Вьюх и развертка верстки
         viewBinding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Обновляем данные в полях по возвращению назад
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         // Получение сохраненного списка сотрудников или иннициализация нового
         employeeModels = sharedPreferencesHelper.getTeamItemModels();
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Класс с коллбеком нажатия на кнопку списка сотрдуников
      */
-    class TeamListOnClickListener implements View.OnClickListener {
+    public class TeamListOnClickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {

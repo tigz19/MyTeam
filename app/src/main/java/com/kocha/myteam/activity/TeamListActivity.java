@@ -21,23 +21,23 @@ import java.util.ArrayList;
 public class TeamListActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    private SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper sharedPreferencesHelper;
     // Биндинг Вьюх
-    private TeamListActivityBinding viewBinding;
+    public TeamListActivityBinding viewBinding;
     // Локальный список сотрудников
-    private ArrayList<EmployeeModel> employeeModels;
+    public ArrayList<EmployeeModel> employeeModels;
     // Адаптер для списка сотрудников
-    private TeamListRecyclerViewAdapter adapter;
+    public TeamListRecyclerViewAdapter adapter;
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         // При сворачивании Активити сохранить все изменения списка сотрудников
         sharedPreferencesHelper.saveItemModels(employeeModels);
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // Биндинг Вьюх и развертка верстки
         viewBinding = TeamListActivityBinding.inflate(getLayoutInflater());
@@ -65,7 +65,7 @@ public class TeamListActivity extends AppCompatActivity {
     /**
      * Класс, который содержит коллбек нажатия на кнопку добавление сотрудника
      */
-    class AddButtonOnCLickListener implements View.OnClickListener {
+    public class AddButtonOnCLickListener implements View.OnClickListener {
 
         @Override
         public void onClick(View v) {
@@ -77,7 +77,7 @@ public class TeamListActivity extends AppCompatActivity {
     /**
      * Класс с функционалом свайпов
      */
-    class SimpleTouchHelper extends ItemTouchHelper.SimpleCallback {
+    public class SimpleTouchHelper extends ItemTouchHelper.SimpleCallback {
 
         public SimpleTouchHelper(int dragDirs, int swipeDirs) {
             super(dragDirs, swipeDirs);

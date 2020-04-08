@@ -18,10 +18,10 @@ public class SharedPreferencesHelper {
 
     public static final String MY_SETTING_NAME = "mysetting";
     public static final String EMPLOYEE_LIST_NAME = "list";
-    private final Context context;
-    private final SharedPreferences sharedPreferences;
-    private final Gson gson = new Gson();
-    private final Type collectionGsonType = new TypeToken<List<EmployeeModel>>() {
+    public final Context context;
+    public final SharedPreferences sharedPreferences;
+    public final Gson gson = new Gson();
+    public final Type collectionGsonType = new TypeToken<List<EmployeeModel>>() {
     }.getType();
 
     // Для работы хелпера необходим Контекст
