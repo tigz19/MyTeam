@@ -14,14 +14,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SharedPreferencesHelper {
+public class SharedPreferencesHelper<M> {
 
     public static final String MY_SETTING_NAME = "mysetting";
-    public static final String EMPLOYEE_LIST_NAME = "list";
+    public static final String SAVING_LIST_NAME = "list";
     public final Context context;
     public final SharedPreferences sharedPreferences;
     public final Gson gson = new Gson();
-    public final Type collectionGsonType = new TypeToken<List<EmployeeModel>>() {
+    public final Type collectionGsonType = new TypeToken<List<M>>() {
     }.getType();
 
     // Для работы хелпера необходим Контекст
@@ -31,25 +31,25 @@ public class SharedPreferencesHelper {
     }
 
     // Получение списка сотрудников из Shared Prefs
-    public ArrayList<EmployeeModel> getTeamItemModels() {
-        String serializedString = sharedPreferences.getString(EMPLOYEE_LIST_NAME, "НЕТ");
-        ArrayList<EmployeeModel> employeeModels;
+    public ArrayList<M> getTeamItemModels() {
+        String serializedString = sharedPreferences.getString(SAVING_LIST_NAME, "НЕТ");
+        ArrayList<M> models;
         try {
-            employeeModels = gson.fromJson(serializedString, collectionGsonType);
+            models = gson.fromJson(serializedString, collectionGsonType);
         } catch (JsonSyntaxException e) {
             e.printStackTrace();
             Toast.makeText(context, "Сотрудники не найдены! Создана новая база.", Toast.LENGTH_LONG).show();
-            employeeModels = new ArrayList<>();
-            saveItemModels(employeeModels);
+            models = new ArrayList<M>();
+            saveItemModels(models);
         }
-        return employeeModels;
+        return models;
     }
 
     // Сохранение списка сотрудников в Shared Prefs
-    public void saveItemModels(ArrayList<EmployeeModel> employeeModels) {
-        String value = gson.toJson(employeeModels);
+    public void saveItemModels(ArrayList<M> models) {
+        String value = gson.toJson(models);
         sharedPreferences.edit()
-                .putString(EMPLOYEE_LIST_NAME, value)
+                .putString(SAVING_LIST_NAME, value)
                 .apply();
     }
 }

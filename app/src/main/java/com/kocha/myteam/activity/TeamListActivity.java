@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class TeamListActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    public SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper<EmployeeModel> sharedPreferencesHelper;
     // Биндинг Вьюх
     public TeamListActivityBinding viewBinding;
     // Локальный список сотрудников
@@ -44,7 +44,7 @@ public class TeamListActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
 
         // Получение списка сотрдуников из Shared Prefs
         employeeModels = sharedPreferencesHelper.getTeamItemModels();

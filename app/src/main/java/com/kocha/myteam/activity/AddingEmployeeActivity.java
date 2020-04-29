@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class AddingEmployeeActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    public SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper<EmployeeModel> sharedPreferencesHelper;
     // Биндинг Вьюх
     public AddTeamMemberActivityBinding viewBinding;
     // Локальный список сотрудников
@@ -30,7 +30,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
 
         // Приводим видимость кнопки в стартовое положение
         updateAddButtonVisibility();

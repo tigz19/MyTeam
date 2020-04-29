@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     // Помощник для работы с Shared Prefs
-    public SharedPreferencesHelper sharedPreferencesHelper;
+    public SharedPreferencesHelper<EmployeeModel> sharedPreferencesHelper;
     // Локальный список сотрдуников
     public ArrayList<EmployeeModel> employeeModels;
     // Биндинг Вьюх
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
 
         // Добавление коллбека кнопки списка сотрудников
         viewBinding.getTeamListButton.setOnClickListener(new TeamListOnClickListener());
@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
             income += employeeModel.income;
         }
         viewBinding.incomeCount.setText(String.valueOf(income));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // Сюда можно записать код для выполнения
     }
 
     /**
