@@ -30,7 +30,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
 
         // Приводим видимость кнопки в стартовое положение
         updateAddButtonVisibility();

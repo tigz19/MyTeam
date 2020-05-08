@@ -44,7 +44,7 @@ public class TeamListActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
 
         // Получение списка сотрдуников из Shared Prefs
         employeeModels = sharedPreferencesHelper.getTeamItemModels();

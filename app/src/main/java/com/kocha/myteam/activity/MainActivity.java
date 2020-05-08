@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper<EmployeeModel>(this);
+        sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
 
         // Добавление коллбека кнопки списка сотрудников
         viewBinding.getTeamListButton.setOnClickListener(new TeamListOnClickListener());
