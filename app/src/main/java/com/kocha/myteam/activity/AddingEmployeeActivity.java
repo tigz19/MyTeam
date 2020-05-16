@@ -51,10 +51,10 @@ public class AddingEmployeeActivity extends AppCompatActivity {
      * В завивимости от состояния полей делает кнопку видимой или не видимой
      */
     public void updateAddButtonVisibility() {
-        if (viewBinding.editName.getText().length() == 0 &&
-                viewBinding.editSurname.getText().length() == 0 &&
-                viewBinding.editPatronymic.getText().length() == 0 &&
-                viewBinding.editSalary.getText().length() == 0 &&
+        if (viewBinding.editName.getText().length() == 0 ||
+                viewBinding.editSurname.getText().length() == 0 ||
+                viewBinding.editPatronymic.getText().length() == 0 ||
+                viewBinding.editSalary.getText().length() == 0 ||
                 viewBinding.editIncome.getText().length() == 0) {
             viewBinding.addMemberButton.setVisibility(View.INVISIBLE);
         } else {
