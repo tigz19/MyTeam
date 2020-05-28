@@ -52,7 +52,8 @@ public class TeamListActivity extends AppCompatActivity {
         // Настройка адаптера списка сотрудников
         viewBinding.recyclerView.setHasFixedSize(true);
         viewBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TeamListRecyclerViewAdapter(employeeModels);
+        // Внутри Адаптера понадобится ссылка на текущий Активити
+        adapter = new TeamListRecyclerViewAdapter(employeeModels, this);
         viewBinding.recyclerView.setAdapter(adapter);
         // Настройка свайпов
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));

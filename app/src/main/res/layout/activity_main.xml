@@ -88,7 +88,7 @@
         tools:text="45 000" />
 
     <TextView
-        android:id="@+id/edit_salary"
+        android:id="@+id/salary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Доход"

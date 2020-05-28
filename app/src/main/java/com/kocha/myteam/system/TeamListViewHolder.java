@@ -1,31 +1,32 @@
 package com.kocha.myteam.system;
 
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kocha.myteam.R;
+import com.kocha.myteam.databinding.ActivityTeamListRecyclerViewItemBinding;
 
-public class TeamListViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+public class TeamListViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView number;
-    public TextView name;
-    public TextView income;
-    public TextView salary;
+    public ActivityTeamListRecyclerViewItemBinding binding;
 
-    public TeamListViewHolder(View v) {
-        super(v);
-        number = itemView.findViewById(R.id.number);
-        name = itemView.findViewById(R.id.name);
-        income = itemView.findViewById(R.id.income);
-        salary = itemView.findViewById(R.id.edit_salary);
-        itemView.setOnClickListener(this);
+    // Для работы Холдера необходим Биндинг
+    public TeamListViewHolder(ActivityTeamListRecyclerViewItemBinding binding) {
+        // Отдаем базовому классу базовый View из Биндинга
+        super(binding.getRoot());
+        this.binding = binding;
+        // Назначаем базовому View OnClickListener
+        itemView.setOnClickListener(new HolderOnClickListener());
     }
 
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(v.getContext(), "Позиция: " + getAdapterPosition(), Toast.LENGTH_SHORT).show();
+    class HolderOnClickListener implements View.OnClickListener {
+
+        @Override
+        // Описываем, что происходит при клике на пункте списка RecyclerView
+        public void onClick(View v) {
+            String text = "Позиция: " + getAdapterPosition();
+            Toast.makeText(v.getContext(), text, Toast.LENGTH_SHORT).show();
+        }
     }
 }
