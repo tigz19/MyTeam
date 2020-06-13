@@ -33,7 +33,7 @@ public class TeamListActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         // При сворачивании Активити сохранить все изменения списка сотрудников
-        sharedPreferencesHelper.saveItemModels(employeeModels);
+        sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class TeamListActivity extends AppCompatActivity {
         sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
 
         // Получение списка сотрдуников из Shared Prefs
-        employeeModels = sharedPreferencesHelper.getTeamItemModels();
+        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
 
         // Настройка адаптера списка сотрудников
         viewBinding.recyclerView.setHasFixedSize(true);

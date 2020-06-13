@@ -44,7 +44,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
         viewBinding.addMemberButton.setOnClickListener(new AddEmployeeClickListener());
 
         // Восстанавливаем список сотрудников из Shared Prefs
-        employeeModels = sharedPreferencesHelper.getTeamItemModels();
+        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
     }
 
     /**
@@ -75,7 +75,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
                     Integer.parseInt(viewBinding.editIncome.getText().toString()),
                     Integer.parseInt(viewBinding.editSalary.getText().toString()));
             employeeModels.add(employeeModel);
-            sharedPreferencesHelper.saveItemModels(employeeModels);
+            sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
             onNavigateUp();
         }
     }
