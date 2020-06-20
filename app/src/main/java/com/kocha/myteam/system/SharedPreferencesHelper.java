@@ -39,7 +39,7 @@ public class SharedPreferencesHelper<M> {
     }
 
     public void saveModelsArrayList(@NonNull String listName, @NonNull ArrayList<M> models) {
-        saveListViaMoshi(listName, models);
+        saveViaMoshi(listJsonAdapter, listName, models);
     }
 
     @Nullable
@@ -48,7 +48,7 @@ public class SharedPreferencesHelper<M> {
     }
 
     public void saveModel(@NonNull String modelName, @NonNull M model) {
-        saveModelViaMoshi(modelName, model);
+        saveViaMoshi(modelJsonAdapter, modelName, model);
     }
 
     @Nullable
@@ -64,8 +64,8 @@ public class SharedPreferencesHelper<M> {
         }
     }
 
-    private void saveModelViaMoshi(String modelName, M model) {
-        String json = modelJsonAdapter.toJson(model);
+    private <T> void saveViaMoshi(JsonAdapter<T> jsonAdapter, String modelName, T model) {
+        String json = jsonAdapter.toJson(model);
         sharedPreferences.edit()
                 .putString(modelName, json)
                 .apply();
@@ -83,12 +83,5 @@ public class SharedPreferencesHelper<M> {
             e.printStackTrace();
             return null;
         }
-    }
-
-    private void saveListViaMoshi(String listName, ArrayList<M> models) {
-        String json = listJsonAdapter.toJson(models);
-        sharedPreferences.edit()
-                .putString(listName, json)
-                .apply();
     }
 }
