@@ -16,13 +16,13 @@ import java.util.Optional;
 
 public class SharedPreferencesHelper<M> {
 
-    public static final String MY_SETTING_NAME = "shared_prefs_helper_data";
-    public final Context context;
-    public final SharedPreferences sharedPreferences;
-    public final Class<M> modelClass;
-    public final Moshi moshi = new Moshi.Builder().build();
-    public final JsonAdapter<List<M>> listJsonAdapter;
-    public final JsonAdapter<M> modelJsonAdapter;
+    private static final String MY_SETTING_NAME = "shared_prefs_helper_data";
+    private final Context context;
+    private final SharedPreferences sharedPreferences;
+    private final Class<M> modelClass;
+    private final Moshi moshi = new Moshi.Builder().build();
+    private final JsonAdapter<List<M>> listJsonAdapter;
+    private final JsonAdapter<M> modelJsonAdapter;
 
     // Для работы хелпера необходим Контекст
     public SharedPreferencesHelper(@NonNull Context context, @NonNull Class<M> modelClass) {
