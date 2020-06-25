@@ -25,7 +25,7 @@ public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListVi
     @NonNull
     @Override
     // Описываем тут создание нового Холдера
-    public TeamListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TeamListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Получаем из Активити LayoutInflater, который нужен для разворачивания Биндинга
         LayoutInflater layoutInflater = activity.getLayoutInflater();
         // Разворачиваем Биндинг с помощью LayoutInflater и со специальными параметрами
