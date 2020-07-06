@@ -12,10 +12,11 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        viewBinding {
-            enabled = true
-        }
         multiDexEnabled true
+    }
+
+    buildFeatures {
+        viewBinding true
     }
 
     buildTypes {
@@ -43,5 +44,5 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation 'com.google.android.material:material:1.1.0'
     implementation 'com.squareup.moshi:moshi:1.9.2'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.5'
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.0.9'
 }
