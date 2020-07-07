@@ -11,9 +11,16 @@ import com.kocha.myteam.databinding.ActivityMainBinding;
 import com.kocha.myteam.system.AppDatabase;
 import com.kocha.myteam.system.EmployeeModel;
 import com.kocha.myteam.system.EmployeeModelDao;
+import com.kocha.myteam.system.network.CurrenciesApi;
+import com.kocha.myteam.system.network.Networking;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     public ActivityMainBinding viewBinding;
 
     public EmployeeModelDao employeeModelDao;
+
+    private CurrenciesApi currenciesApi = new Networking().currenciesApi;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,31 @@ public class MainActivity extends AppCompatActivity {
 
         // Добавление коллбека кнопки списка сотрудников
         viewBinding.getTeamListButton.setOnClickListener(new TeamListOnClickListener());
+        calculateDollarsIncome();
+    }
+
+    public void calculateDollarsIncome() {
+        currenciesApi.getDollarRate("RUB", "USD")
+                // Настраиваем фоновую работу
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                // Что делаем при успехе
+                .doOnSuccess(currencyModel -> {
+                    Float usd = Optional.ofNullable(currencyModel.rates.get("USD"))
+                            .orElseThrow(() -> new IOException("Не удалось получить USD"));
+                    float income = 0;
+                    for (EmployeeModel employeeModel : employeeModels) {
+                        income += employeeModel.income;
+                    }
+                    Toast.makeText(MainActivity.this, "Доход в баксах: $" + usd * income, Toast.LENGTH_LONG).show();
+                })
+                // Что делаем при фейле
+                .doOnError(throwable -> {
+                    throwable.printStackTrace();
+                    Toast.makeText(MainActivity.this, "ИНТЕРНЕТ СЛОМАЛСЯ!", Toast.LENGTH_LONG).show();
+                })
+                // Запускаем
+                .subscribe();
     }
 
     // Обновляем данные в полях по возвращению назад
