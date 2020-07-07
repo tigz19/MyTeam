@@ -12,28 +12,29 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.kocha.myteam.databinding.TeamListActivityBinding;
+import com.kocha.myteam.system.AppDatabase;
 import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
+import com.kocha.myteam.system.EmployeeModelDao;
 import com.kocha.myteam.system.TeamListRecyclerViewAdapter;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TeamListActivity extends AppCompatActivity {
 
-    // Помощник для работы с Shared Prefs
-    public SharedPreferencesHelper<EmployeeModel> sharedPreferencesHelper;
     // Биндинг Вьюх
     public TeamListActivityBinding viewBinding;
     // Локальный список сотрудников
-    public ArrayList<EmployeeModel> employeeModels;
+    public List<EmployeeModel> employeeModels;
     // Адаптер для списка сотрудников
     public TeamListRecyclerViewAdapter adapter;
+
+    public EmployeeModelDao employeeModelDao;
 
     @Override
     public void onPause() {
         super.onPause();
         // При сворачивании Активити сохранить все изменения списка сотрудников
-        sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
+        employeeModelDao.insertAll(employeeModels);
     }
 
     @Override
@@ -42,12 +43,10 @@ public class TeamListActivity extends AppCompatActivity {
         // Биндинг Вьюх и развертка верстки
         viewBinding = TeamListActivityBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
-
-        // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
+        employeeModelDao = AppDatabase.getAppDatabase(this).getEmployeeModelDao();
 
         // Получение списка сотрдуников из Shared Prefs
-        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
+        employeeModels = employeeModelDao.getAllEmployeeModels();
 
         // Настройка адаптера списка сотрудников
         viewBinding.recyclerView.setHasFixedSize(true);

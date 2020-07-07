@@ -8,19 +8,20 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.kocha.myteam.databinding.AddTeamMemberActivityBinding;
+import com.kocha.myteam.system.AppDatabase;
 import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
+import com.kocha.myteam.system.EmployeeModelDao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class AddingEmployeeActivity extends AppCompatActivity {
 
-    // Помощник для работы с Shared Prefs
-    public SharedPreferencesHelper<EmployeeModel> sharedPreferencesHelper;
     // Биндинг Вьюх
     public AddTeamMemberActivityBinding viewBinding;
     // Локальный список сотрудников
-    public ArrayList<EmployeeModel> employeeModels;
+    public List<EmployeeModel> employeeModels;
+
+    public EmployeeModelDao employeeModelDao;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
         // Биндинг Вьюх и развертка верстки
         viewBinding = AddTeamMemberActivityBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
-
-        // Создаем помощника работы с Shared Prefs
-        sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
+        employeeModelDao = AppDatabase.getAppDatabase(this).getEmployeeModelDao();
 
         // Приводим видимость кнопки в стартовое положение
         updateAddButtonVisibility();
@@ -44,7 +43,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
         viewBinding.addMemberButton.setOnClickListener(new AddEmployeeClickListener());
 
         // Восстанавливаем список сотрудников из Shared Prefs
-        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
+        employeeModels = employeeModelDao.getAllEmployeeModels();
     }
 
     /**
@@ -75,7 +74,7 @@ public class AddingEmployeeActivity extends AppCompatActivity {
                     Integer.parseInt(viewBinding.editIncome.getText().toString()),
                     Integer.parseInt(viewBinding.editSalary.getText().toString()));
             employeeModels.add(employeeModel);
-            sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
+            employeeModelDao.insertAll(employeeModels);
             onNavigateUp();
         }
     }

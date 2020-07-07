@@ -9,15 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.kocha.myteam.databinding.ActivityTeamListRecyclerViewItemBinding;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class TeamListRecyclerViewAdapter extends RecyclerView.Adapter<TeamListViewHolder> {
 
-    public ArrayList<EmployeeModel> employeeModels;
+    public List<EmployeeModel> employeeModels;
     public Activity activity;
 
     // Для работы Адаптера необходим список Сотрудников и Активити, в котором работает Recycler View
-    public TeamListRecyclerViewAdapter(ArrayList<EmployeeModel> employeeModels, Activity activity) {
+    public TeamListRecyclerViewAdapter(List<EmployeeModel> employeeModels, Activity activity) {
         this.employeeModels = employeeModels;
         this.activity = activity;
     }
