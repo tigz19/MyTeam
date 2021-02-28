@@ -1,4 +1,4 @@
-package com.kocha.myteam.activity;
+package ru.engineers.my_team.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kocha.myteam.databinding.ActivityMainBinding;
-import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
+import com.engineers.my_team.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+
+import ru.engineers.my_team.system.EmployeeModel;
+import ru.engineers.my_team.system.SharedPreferencesHelper;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.kocha.myteam.activity;
+package ru.engineers.my_team.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,11 +7,12 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kocha.myteam.databinding.AddTeamMemberActivityBinding;
-import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
+import com.engineers.my_team.databinding.AddTeamMemberActivityBinding;
 
 import java.util.ArrayList;
+
+import ru.engineers.my_team.system.EmployeeModel;
+import ru.engineers.my_team.system.SharedPreferencesHelper;
 
 public class AddingEmployeeActivity extends AppCompatActivity {
 

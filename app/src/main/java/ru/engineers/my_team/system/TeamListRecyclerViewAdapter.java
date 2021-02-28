@@ -1,4 +1,4 @@
-package com.kocha.myteam.system;
+package ru.engineers.my_team.system;
 
 import android.app.Activity;
 import android.view.LayoutInflater;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kocha.myteam.databinding.ActivityTeamListRecyclerViewItemBinding;
+import com.engineers.my_team.databinding.ActivityTeamListRecyclerViewItemBinding;
 
 import java.util.ArrayList;
 

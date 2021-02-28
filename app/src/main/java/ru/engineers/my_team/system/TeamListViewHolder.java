@@ -1,11 +1,11 @@
-package com.kocha.myteam.system;
+package ru.engineers.my_team.system;
 
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kocha.myteam.databinding.ActivityTeamListRecyclerViewItemBinding;
+import com.engineers.my_team.databinding.ActivityTeamListRecyclerViewItemBinding;
 
 public class TeamListViewHolder extends RecyclerView.ViewHolder {
 
