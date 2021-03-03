@@ -35,7 +35,7 @@
         tools:text="#" />
 
     <TextView
-        android:id="@+id/edit_salary"
+        android:id="@+id/salary"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -53,7 +53,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/name"
-        app:layout_constraintTop_toTopOf="@+id/edit_salary"
+        app:layout_constraintTop_toTopOf="@+id/salary"
         tools:text="Доход: 150 000 руб." />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

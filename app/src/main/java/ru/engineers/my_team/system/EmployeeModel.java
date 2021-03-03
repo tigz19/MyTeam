@@ -1,4 +1,4 @@
-package com.kocha.myteam.system;
+package ru.engineers.my_team.system;
 
 /**
  * Модель для хранения данных одного сотрудника

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
+    tools:context="ru.engineers.my_team.activity.MainActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -88,7 +88,7 @@
         tools:text="45 000" />
 
     <TextView
-        android:id="@+id/edit_salary"
+        android:id="@+id/salary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Доход"

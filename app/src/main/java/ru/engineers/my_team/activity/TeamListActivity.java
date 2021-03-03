@@ -1,4 +1,4 @@
-package com.kocha.myteam.activity;
+package ru.engineers.my_team.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,12 +11,13 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.kocha.myteam.databinding.TeamListActivityBinding;
-import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
-import com.kocha.myteam.system.TeamListRecyclerViewAdapter;
+import com.engineers.my_team.databinding.TeamListActivityBinding;
 
 import java.util.ArrayList;
+
+import ru.engineers.my_team.system.EmployeeModel;
+import ru.engineers.my_team.system.SharedPreferencesHelper;
+import ru.engineers.my_team.system.TeamListRecyclerViewAdapter;
 
 public class TeamListActivity extends AppCompatActivity {
 
@@ -33,7 +34,7 @@ public class TeamListActivity extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         // При сворачивании Активити сохранить все изменения списка сотрудников
-        sharedPreferencesHelper.saveItemModels(employeeModels);
+        sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
     }
 
     @Override
@@ -47,12 +48,13 @@ public class TeamListActivity extends AppCompatActivity {
         sharedPreferencesHelper = new SharedPreferencesHelper<>(this, EmployeeModel.class);
 
         // Получение списка сотрдуников из Shared Prefs
-        employeeModels = sharedPreferencesHelper.getTeamItemModels();
+        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
 
         // Настройка адаптера списка сотрудников
         viewBinding.recyclerView.setHasFixedSize(true);
         viewBinding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new TeamListRecyclerViewAdapter(employeeModels);
+        // Внутри Адаптера понадобится ссылка на текущий Активити
+        adapter = new TeamListRecyclerViewAdapter(employeeModels, this);
         viewBinding.recyclerView.setAdapter(adapter);
         // Настройка свайпов
         ItemTouchHelper itemTouchHelper = new ItemTouchHelper(new SimpleTouchHelper(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT));

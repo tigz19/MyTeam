@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.kocha.myteam">
+    package="com.engineers.my_team">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.MainActivity"
+            android:name="ru.engineers.my_team.activity.MainActivity"
             android:label="Менеджер команды">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,14 +18,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.TeamListActivity"
+            android:name="ru.engineers.my_team.activity.TeamListActivity"
             android:label="Экран списка сотрудников"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName="ru.engineers.my_team.activity.MainActivity" />
         <activity
-            android:name=".activity.AddingEmployeeActivity"
+            android:name="ru.engineers.my_team.activity.AddingEmployeeActivity"
             android:label="Экран добавления сотрудника"
             android:noHistory="true"
-            android:parentActivityName=".activity.TeamListActivity" />
+            android:parentActivityName="ru.engineers.my_team.activity.TeamListActivity" />
     </application>
 
 </manifest>

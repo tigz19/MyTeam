@@ -1,16 +1,18 @@
-package com.kocha.myteam.activity;
+package ru.engineers.my_team.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.kocha.myteam.databinding.ActivityMainBinding;
-import com.kocha.myteam.system.EmployeeModel;
-import com.kocha.myteam.system.SharedPreferencesHelper;
+import com.engineers.my_team.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+
+import ru.engineers.my_team.system.EmployeeModel;
+import ru.engineers.my_team.system.SharedPreferencesHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,7 +42,13 @@ public class MainActivity extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         // Получение сохраненного списка сотрудников или иннициализация нового
-        employeeModels = sharedPreferencesHelper.getTeamItemModels();
+        employeeModels = sharedPreferencesHelper.getModelsArrayList("employees");
+        // Если полученный писок сотрудников null, то создаем новый пустой и сохраняем его
+        if (employeeModels == null) {
+            Toast.makeText(this, "Иннициируем базу Сотрудников...", Toast.LENGTH_LONG).show();
+            employeeModels = new ArrayList<>();
+            sharedPreferencesHelper.saveModelsArrayList("employees", employeeModels);
+        }
 
         // Заполннеие количества сотрудников и общего дохода
         viewBinding.emplCount.setText(String.valueOf(employeeModels.size()));
