@@ -17,15 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="ru.engineers.my_team.activity.TeamListActivity"
-            android:label="Экран списка сотрудников"
-            android:parentActivityName="ru.engineers.my_team.activity.MainActivity" />
-        <activity
-            android:name="ru.engineers.my_team.activity.AddingEmployeeActivity"
-            android:label="Экран добавления сотрудника"
-            android:noHistory="true"
-            android:parentActivityName="ru.engineers.my_team.activity.TeamListActivity" />
     </application>
 
 </manifest>
